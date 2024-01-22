@@ -1,0 +1,87 @@
+1.import java.util.*;
+
+class Main {
+    static boolean lastDigit(int x,int y) {
+        return (x%10==y%10);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the X:");
+        int x = sc.nextInt();
+        System.out.println("Enter the y:");
+        int y = sc.nextInt();
+        System.out.println(lastDigit(x,y));
+        sc.close();
+    }
+}
+
+2.import java.util.*;
+
+class Main {
+    static boolean isEven(int n) {
+        return (n % 2 == 0);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the integer:");
+        int n = sc.nextInt();
+        System.out.println(isEven(n));
+        sc.close();
+    }
+}
+
+3.import java.util.*;
+
+class Main {
+    static int sumDouble(int x,int y) {
+        return (x==y)?2*(x+y):x+y;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the X:");
+        int x = sc.nextInt();
+        System.out.println("Enter the y:");
+        int y = sc.nextInt();
+        System.out.println(sumDouble(x,y));
+        sc.close();
+    }
+}
+
+4.import java.util.*;
+
+class Main {
+    static boolean marks(int x,int y) {
+        return (x==10 || y==10 || (x+y)==10);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the X:");
+        int x = sc.nextInt();
+        System.out.println("Enter the y:");
+        int y = sc.nextInt();
+        System.out.println(marks(x,y));
+        sc.close();
+    }
+}
+
+5.import java.util.*;
+
+class Main {
+    static boolean in1020(int x,int y) {
+        return (x>=10 && x<=20)||(y>=10 && y<=20);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the X:");
+        int x = sc.nextInt();
+        System.out.println("Enter the y:");
+        int y = sc.nextInt();
+        System.out.println(in1020(x,y));
+        sc.close();
+    }
+}

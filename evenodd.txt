@@ -1,0 +1,26 @@
+public class EvenOddArray {
+    public static void main(String[] args) {
+        int[] numbers = {2,3,4,5,6,7,8};
+        int[] evenNumbers = new int[numbers.length];
+        int[] oddNumbers = new int[numbers.length];
+        int evenIndex = 0;
+        int oddIndex = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] % 2 == 0) {
+                evenNumbers[evenIndex++] = numbers[i];
+            } else {
+                oddNumbers[oddIndex++] = numbers[i];
+            }
+        }
+        System.out.print("Even Numbers: ");
+        for (int i = 0; i < evenIndex; i++) {
+            System.out.print(evenNumbers[i] + " ");
+        }
+        System.out.println();
+        System.out.print("Odd Numbers: ");
+        for (int i = 0; i < oddIndex; i++) {
+            System.out.print(oddNumbers[i] + " ");
+        }
+        System.out.println();
+    }
+}

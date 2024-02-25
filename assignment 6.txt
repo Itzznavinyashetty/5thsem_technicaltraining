@@ -1,0 +1,220 @@
+1)
+import java.util.Arrays;
+
+public class ConcatenatedArray {
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 1};
+        int[] ans = getConcatenatedArray(nums);
+        System.out.println(Arrays.toString(ans)); // [1, 2, 1, 1, 2, 1]
+    }
+
+    public static int[] getConcatenatedArray(int[] nums) {
+        int n = nums.length;
+        int[] ans = new int[2 * n];
+
+        // Copy elements from nums to ans
+        for (int i = 0; i < n; i++) {
+            ans[i] = nums[i];
+            ans[i + n] = nums[i];
+        }
+
+        return ans;
+    }
+}
+
+
+2)
+import java.util.Arrays;
+
+public class OperationsToEmptyArray {
+    public static void main(String[] args) {
+        int[] nums = {3, 1, 2};
+        int operations = minOperations(nums);
+        System.out.println("Number of operations: " + operations);
+    }
+
+    public static int minOperations(int[] nums) {
+        int operations = 0;
+        int minIndex = findMinIndex(nums);
+
+        while (nums.length > 0) {
+            if (minIndex == 0) {
+                // If the first element has the smallest value, remove it
+                nums = Arrays.copyOfRange(nums, 1, nums.length);
+            } else {
+                // Otherwise, put the first element at the end of the array
+                int firstElement = nums[0];
+                nums = Arrays.copyOfRange(nums, 1, nums.length);
+                nums = Arrays.copyOf(nums, nums.length + 1);
+                nums[nums.length - 1] = firstElement;
+            }
+
+            // Recalculate the index of the minimum element
+            minIndex = findMinIndex(nums);
+            operations++;
+        }
+
+        return operations;
+    }
+
+    public static int findMinIndex(int[] nums) {
+        int minIndex = 0;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] < nums[minIndex]) {
+                minIndex = i;
+            }
+        }
+        return minIndex;
+    }
+}
+
+
+3)
+import java.util.Arrays;
+
+public class Construct2DArray {
+    public static void main(String[] args) {
+        int[] original = {1, 2, 3, 4};
+        int m = 2;
+        int n = 2;
+        int[][] result = construct2DArray(original, m, n);
+        
+        if (result != null) {
+            for (int[] row : result) {
+                System.out.println(Arrays.toString(row));
+            }
+        } else {
+            System.out.println("Empty 2D array");
+        }
+    }
+
+    public static int[][] construct2DArray(int[] original, int m, int n) {
+        int totalElements = original.length;
+        
+        // Check if it is possible to create a 2D array with given m and n
+        if (m * n != totalElements) {
+            return new int[0][0]; // Empty 2D array
+        }
+        
+        int[][] result = new int[m][n];
+        int index = 0;
+        
+        // Fill the 2D array with elements from the original array
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                result[i][j] = original[index++];
+            }
+        }
+        
+        return result;
+    }
+}
+
+
+4)
+
+import java.util.Arrays;
+
+public class PartitionArray {
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3, 4, 5, 6, 7, 8};
+        System.out.println(canPartition(nums)); // Should print true
+    }
+
+    public static boolean canPartition(int[] nums) {
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+
+        Arrays.sort(nums);
+
+        int target = sum / 2;
+
+        boolean[] dp = new boolean[target + 1];
+        dp[0] = true;
+
+        for (int num : nums) {
+            for (int j = target; j >= num; j--) {
+                dp[j] |= dp[j - num];
+            }
+        }
+
+        return dp[target] && sum % 2 == 0;
+    }
+}
+
+
+5)
+
+import java.util.Scanner;
+
+public class MatrixMultiplication {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the number of rows for matrix A:");
+        int rowsA = scanner.nextInt();
+        System.out.println("Enter the number of columns for matrix A:");
+        int colsA = scanner.nextInt();
+
+        System.out.println("Enter the number of rows for matrix B:");
+        int rowsB = scanner.nextInt();
+        System.out.println("Enter the number of columns for matrix B:");
+        int colsB = scanner.nextInt();
+
+        if (colsA != rowsB) {
+            System.out.println("Matrix multiplication is not possible.");
+        } else {
+            int[][] matrixA = new int[rowsA][colsA];
+            int[][] matrixB = new int[rowsB][colsB];
+
+            System.out.println("Enter elements for matrix A:");
+            inputMatrixElements(scanner, matrixA);
+
+            System.out.println("Enter elements for matrix B:");
+            inputMatrixElements(scanner, matrixB);
+
+            int[][] product = multiplyMatrices(matrixA, matrixB);
+            System.out.println("Product matrix:");
+            printMatrix(product);
+        }
+
+        scanner.close();
+    }
+
+    public static void inputMatrixElements(Scanner scanner, int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[i][j] = scanner.nextInt();
+            }
+        }
+    }
+
+    public static int[][] multiplyMatrices(int[][] A, int[][] B) {
+        int rowsA = A.length;
+        int colsA = A[0].length;
+        int colsB = B[0].length;
+
+        int[][] product = new int[rowsA][colsB];
+
+        for (int i = 0; i < rowsA; i++) {
+            for (int j = 0; j < colsB; j++) {
+                for (int k = 0; k < colsA; k++) {
+                    product[i][j] += A[i][k] * B[k][j];
+                }
+            }
+        }
+
+        return product;
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int element : row) {
+                System.out.print(element + " ");
+            }
+            System.out.println();
+        }
+    }
+}

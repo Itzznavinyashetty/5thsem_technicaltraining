@@ -1,0 +1,422 @@
+
+1. PROBLEM 1
+package series2;
+import java.util.Scanner;
+public class series2
+{
+	static int a,b,n;
+	public static void printseries()
+	{
+		for(int i=0;i<n;i++)
+		{
+            int term=a;
+            for(int j=0;j<=i;j++)
+                term+=Math.pow(2,j)*b;
+            System.out.print(term + " ");
+        }
+	}
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.print("Enter a,b,n: ");
+		a=sc.nextInt();
+		b=sc.nextInt();
+		n=sc.nextInt();
+		printseries();
+		sc.close();
+	}
+}
+
+2.PROBLEM 2
+package reverseofX;
+import java.util.Scanner;
+public class reverseofX
+{
+	static int x;
+	public static void ReverseOfX()
+	{
+		int rev=0,X=x;
+        while(X!=0)
+        {
+            int dgit=X%10;
+            rev=rev*10+dgit;
+            X/=10;
+        }
+        System.out.println("Reverse of "+x+" is: "+rev);
+	}
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.print("Enter x: ");
+		x=sc.nextInt();
+		ReverseOfX();
+		sc.close();
+	}
+}
+
+3.PROBLEM 3
+package binarynum;
+import java.util.Scanner;
+public class binarynum
+{
+	static int x;
+	public static void BinaryNum()
+	{
+		StringBuilder binStr = new StringBuilder();
+        if(x==0)
+            binStr.append("0");
+        while(x>0)
+        {
+            int rem=x%2;
+            binStr.insert(0,rem);
+            x/=2;
+        }
+        System.out.println("Binary of "+x+" is: "+binStr);
+	}
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.print("Enter x: ");
+		x=sc.nextInt();
+		BinaryNum();
+		sc.close();
+	}
+}
+
+4.PROBLEM 4
+package bus_ticket;
+import java.util.Scanner;
+public class bus_ticket
+{
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		int fromStage,toStage,adults,children,numStages;
+		double adultCostPerStage=10.0,childCostPerStage=5.0,totalTicketCost,discount,discountAmount,ticketCostAfterDiscount,serviceCharge,totalCost;
+		System.out.print("Enter From stage number: ");
+        fromStage=sc.nextInt();
+        System.out.print("Enter To stage number: ");
+        toStage=sc.nextInt();
+        System.out.print("Enter number of adult passengers: ");
+        adults=sc.nextInt();
+        System.out.print("Enter number of children passengers: ");
+        children=sc.nextInt();
+        numStages=Math.abs(toStage-fromStage);
+        totalTicketCost=(adults*adultCostPerStage+children*childCostPerStage)*numStages;
+        if(adults>=5)
+            discount=0.20;
+        else if(adults==4)
+            discount=0.15;
+        else if(adults==3)
+            discount=0.10;
+        else if(adults==2)
+            discount=0.05;
+        else
+            discount=0.0;
+        discountAmount=totalTicketCost*discount;
+        ticketCostAfterDiscount=totalTicketCost-discountAmount;
+        serviceCharge=ticketCostAfterDiscount*0.05;
+        totalCost=ticketCostAfterDiscount+serviceCharge;
+        System.out.println("Total Ticket Cost: Rs."+totalCost);
+        sc.close();
+	}
+}
+
+
+5.PROBLEM 5
+package nearestPrime;
+import java.util.Scanner;
+public class nearestPrime
+{
+	static int lowerPrime,UpperPrime;
+	public static boolean isPrime(int num)
+	{
+        if(num<=1)
+            return false;
+        if(num<=3)
+            return true;
+        if(num==4)
+        	return false;
+        if(num%2==0||num%3==0)
+            return false;
+        for(int i=5;i*i<=num;i=i+6)
+            if(num%i==0||num%(i+2)==0)
+                return false;
+        return true;
+    }
+	public static void NearestPrime(int X)
+	{
+        lowerPrime=X-1;
+        UpperPrime=X+1;
+        while(true)
+        {
+            if(isPrime(lowerPrime))
+                break;
+            else if(isPrime(UpperPrime))
+                break;
+            lowerPrime--;
+            UpperPrime++;
+        }
+    }
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		int x;
+		System.out.print("Enter x: ");
+		x=sc.nextInt();
+		NearestPrime(x);
+		System.out.println("Nearest prime to " +x+" : "+lowerPrime+" "+UpperPrime);
+		sc.close();
+	}
+}
+
+
+6.PROBLEM 6
+package primeDigitSum;
+import java.util.Scanner;
+public class primeDigitSum
+{
+	public static boolean isPrime(int num)
+	{
+        if(num<=1)
+            return false;
+        if(num<=3)
+            return true;
+        if(num%2==0||num%3==0)
+            return false;
+        for(int i=5;i*i<=num;i=i+6)
+            if(num%i==0||num%(i+2)==0)
+                return false;
+        return true;
+    }
+    public static boolean PrimeDigitSum(int X)
+    {
+        int sum=0;
+        while(X>0)
+        {
+            int digit=X%10;
+            if(digit==2||digit==3||digit==5||digit==7)
+                sum+=digit;
+            X/=10;
+        }
+        return isPrime(sum);
+    }
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		int x;
+		System.out.print("Enter x: ");
+		x=sc.nextInt();
+		System.out.println(PrimeDigitSum(x));
+		sc.close();
+	}
+}
+
+PROBLEM 7
+package nearestArmstrong;
+import java.util.Scanner;
+public class nearestArmstrong
+{
+	public static int power(int base,int exponent)
+	{
+        int result=1;
+        for(int i=0;i<exponent;i++)
+            result*=base;
+        return result;
+    }
+    public static int numDigits(int number)
+    {
+        int count=0;
+        while(number!=0)
+        {
+            number/=10;
+            count++;
+        }
+        return count;
+    }
+    public static boolean isArmstrong(int number)
+    {
+        int originalNumber=number,n=numDigits(number),sum=0;
+        while(number!=0)
+        {
+            int digit=number%10;
+            sum+=power(digit,n);
+            number/=10;
+        }
+        return sum==originalNumber;
+    }
+    public static int NearestArmstrong(int X)
+    {
+        int lowerArmstrong=X-1,upperArmstrong=X+1;
+        while(true)
+        {
+            if(isArmstrong(lowerArmstrong))
+                return lowerArmstrong;
+            else if(isArmstrong(upperArmstrong))
+                return upperArmstrong;
+            lowerArmstrong--;
+            upperArmstrong++;
+        }
+    }
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		int x;
+		System.out.print("Enter x: ");
+		x=sc.nextInt();
+		System.out.println(NearestArmstrong(x));
+		sc.close();
+	}
+}
+
+PROBLEM 7
+package fib_Prime;
+import java.util.Scanner;
+public class FibPrime
+{
+	public static boolean isPerfectSquare(int x)
+	{
+        int s=(int)Math.sqrt(x);
+        return s*s==x;
+    }
+    public static boolean isFibonacci(int n)
+    {
+        return isPerfectSquare(5*n*n+4)||isPerfectSquare(5*n*n-4);
+    }
+    public static boolean isPrime(int n)
+    {
+        if(n<=1)
+            return false;
+        if(n<=3)
+            return true;
+        if(n%2==0||n%3==0)
+            return false;
+        for(int i=5;i*i<=n;i=i+6)
+            if(n%i==0||n%(i+2)==0)
+                return false;
+        return true;
+    }
+    public static void fibPrime(int X)
+    {
+        if(isFibonacci(X))
+        {
+            if(isPrime(X))
+                System.out.println(X);
+            else
+            {
+                int lowerFib=X-1,upperFib=X+1;
+                while(true)
+                {
+                    if(isFibonacci(lowerFib)&&isPrime(lowerFib))
+                    {
+                        System.out.println(lowerFib);
+                        break;
+                    }
+                    else if(isFibonacci(upperFib)&&isPrime(upperFib))
+                    {
+                        System.out.println(upperFib);
+                        break;
+                    }
+                    lowerFib--;
+                    upperFib++;
+                }
+            }
+        }
+        else
+        {
+            int prev=0,next=1,fib;
+            while(true)
+            {
+                fib=prev+next;
+                prev=next;
+                next=fib;
+                if(fib>=X)
+                    break;
+            }
+            if(isPrime(fib))
+                System.out.println(fib);
+            else
+            {
+                int lowerFib=fib-1,upperFib=fib+1;
+                while(true)
+                {
+                    if(isFibonacci(lowerFib)&&isPrime(lowerFib))
+                    {
+                        System.out.println(lowerFib);
+                        break;
+                    }
+                    else if(isFibonacci(upperFib)&&isPrime(upperFib))
+                    {
+                        System.out.println(upperFib);
+                        break;
+                    }
+                    lowerFib--;
+                    upperFib++;
+                }
+            }
+        }
+    }
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		int x;
+		System.out.print("Enter x: ");
+		x=sc.nextInt();
+		fibPrime(x);
+		sc.close();
+	}
+}
+
+
+PROBLEM 7
+package fib_Prime;
+import java.util.Scanner;
+public class fib_Prime
+{
+	public static boolean isPerfectSquare(int x)
+	{
+        int s=(int)Math.sqrt(x);
+        return s*s==x;
+    }
+    public static boolean isFibonacci(int n)
+    {
+        return isPerfectSquare(5*n*n+4)||isPerfectSquare(5*n*n-4);
+    }
+    public static boolean isPrime(int n)
+    {
+        if(n<=1)
+            return false;
+        if(n<=3)
+            return true;
+        if(n%2==0||n%3==0)
+            return false;
+        for(int i=5;i*i<=n;i=i+6)
+            if(n%i==0||n%(i+2)==0)
+                return false;
+        return true;
+    }
+    public static void FibPrime(int X,int Y)
+    {
+        boolean found=false;
+        for(int i=X;i<=Y;i++)
+            if (isFibonacci(i)&&isPrime(i))
+            {
+                System.out.print(i+ " ");
+                found=true;
+            }
+        if(!found)
+            System.out.println("0");
+    }
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		int x,y;
+		System.out.print("Enter x & y: ");
+		x=sc.nextInt();
+		y=sc.nextInt();
+		FibPrime(x,y);
+		sc.close();
+	}
+}
+
+

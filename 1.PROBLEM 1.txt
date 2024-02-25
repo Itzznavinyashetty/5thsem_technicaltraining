@@ -1,0 +1,188 @@
+1.PROBLEM 1
+package ZeroConverter;
+import java.util.Scanner;
+public class ZeroConverter
+{
+	static int i,n;
+	public static void neg()
+	{
+		for (i=n;i<=0;i++)
+			System.out.print(i+" ");
+		System.out.println();
+	}
+	public static void pos()
+	{
+		for (i=n-1;i>=0;i--)
+			System.out.print(i+" ");
+		System.out.println();
+	}
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		n=sc.nextInt();
+		if(n==0)
+			System.out.println("already Zero");
+		else if(n>0)
+			pos();
+		else
+			neg();
+		sc.close();
+	}
+}
+
+
+
+2.PROBLEM 2
+package ATM_Program;
+import java.util.Scanner;
+public class ATM_Program
+{
+	static int pin=1234,balance=0;
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		int choice,enteredPin,depositAmount,withdrawAmount;
+		do
+		{
+			System.out.println("Welcome to ATM");
+			System.out.print("Enter your PIN: ");
+			enteredPin=sc.nextInt();
+			if(enteredPin==pin)
+			{
+				do
+				{
+					System.out.print("\nOptions:\n1. Deposit\n2. Withdraw\n3. Balance enquiry\n4. PIN change\n5. Exit\nEnter your choice: ");
+					choice=sc.nextInt();
+					switch(choice)
+					{
+						case 1:	System.out.print("Enter the amount to deposit: ");
+								depositAmount=sc.nextInt();
+								balance+=depositAmount;
+								System.out.println("Transaction successful!");
+								break;
+						case 2:	System.out.print("Enter the amount to withdraw: ");
+								withdrawAmount=sc.nextInt();
+								if(withdrawAmount<=balance)
+								{
+									balance-=withdrawAmount;
+									System.out.println("Transaction successful!");
+								}
+								else
+									System.out.println("Insufficient balance!");
+								break;
+						case 3:	System.out.println("Your current balance: "+balance);
+								break;
+						case 4:	System.out.print("Enter new PIN: ");
+								pin=sc.nextInt();
+								System.out.println("PIN changed successfully!");
+								break;
+						case 5:	System.out.println("Thank you for using the ATM. Goodbye!");
+								System.exit(0);
+						default:System.out.println("Invalid choice! Please try again.");
+					}
+				}while(choice!=4);
+			}
+			else
+				System.out.println("Invalid PIN! Exiting program.");
+		}while(true);
+	}
+}
+
+
+3.PROBLEM 3
+package sumprime;
+import java.util.Scanner;
+public class sumprime
+{
+	static int n1,n2;
+	public static boolean SumPrime()
+	{
+		if(isPrime(n1)&&isPrime(n2))
+			return isPrime(n1+n2);
+		return false;
+	}
+	public static boolean isPrime(int num)
+	{
+		if(num<=1)
+			return false;
+		for(int i=2;i<=Math.sqrt(num);i++)
+			if(num%i==0)
+				return false;
+		return true;
+	}
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.print("Enter 2 numbers: ");
+		n1=sc.nextInt();
+		n2=sc.nextInt();
+		System.out.println(SumPrime());
+		sc.close();
+	}
+}
+
+4.PROBLEM 4
+package stringtimes;
+import java.util.Scanner;
+public class stringtimes
+{
+	static int n;
+	static String s;
+	public static String stringTimes()
+	{
+		String result="";
+		for(int i=0;i<n;i++)
+			result+=s;
+		return result;
+	}
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.print("Enter a string: ");
+		s=sc.next();
+		System.out.print("Enter a number: ");
+		n=sc.nextInt();
+		System.out.println(stringTimes());
+		sc.close();
+	}
+}
+
+5.PROBLEM 5
+package series;
+import java.util.Scanner;
+public class series
+{
+	static int a,b,n;
+	private static void printSeries()
+	{
+		int sum = a;
+		for(int i=0;i<n;i++)
+		{
+			sum+=Math.pow(2,i)*b;
+			System.out.print(sum+" ");
+		}
+		System.out.println();
+	}
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.print("Enter q: ");
+		int q = sc.nextInt();
+		for(int i=0;i<q;i++)
+		{
+			System.out.print("Enter a,b,n: ");
+			a=sc.nextInt();
+			b=sc.nextInt();
+			n=sc.nextInt();
+			printSeries();
+			System.out.print("Enter a,b,n: ");
+			a=sc.nextInt();
+			b=sc.nextInt();
+			n=sc.nextInt();
+			printSeries();
+		}
+		sc.close();
+	}
+}
+
+
